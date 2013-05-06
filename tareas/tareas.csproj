@@ -44,6 +44,8 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -163,14 +165,50 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\TareasController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
-    <Compile Include="Models\tareas.cs" />
-    <Compile Include="Models\tareasContext.cs" />
+    <Compile Include="Models\homework.cs">
+      <DependentUpon>HomeWorks.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HomeWorks.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HomeWorks.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HomeWorks.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HomeWorks.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HomeWorks.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HomeWorks.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\matter.cs">
+      <DependentUpon>HomeWorks.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\rateHomeWork.cs">
+      <DependentUpon>HomeWorks.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\uploadHomework.cs">
+      <DependentUpon>HomeWorks.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserProfile.cs">
+      <DependentUpon>HomeWorks.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\webpages_Membership.cs">
+      <DependentUpon>HomeWorks.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\webpages_OAuthMembership.cs">
+      <DependentUpon>HomeWorks.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\webpages_Roles.cs">
+      <DependentUpon>HomeWorks.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -230,6 +268,23 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <EntityDeploy Include="Models\HomeWorks.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>HomeWorks.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\HomeWorks.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HomeWorks.edmx</DependentUpon>
+      <LastGenOutput>HomeWorks.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\HomeWorks.edmx.diagram">
+      <DependentUpon>HomeWorks.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\HomeWorks.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HomeWorks.edmx</DependentUpon>
+      <LastGenOutput>HomeWorks.cs</LastGenOutput>
+    </Content>
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
@@ -284,18 +339,15 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
-    <Content Include="Views\Tareas\Create.cshtml" />
-    <Content Include="Views\Tareas\Edit.cshtml" />
-    <Content Include="Views\Tareas\Delete.cshtml" />
-    <Content Include="Views\Tareas\Details.cshtml" />
-    <Content Include="Views\Tareas\Index.cshtml" />
-    <Content Include="Views\Tareas\_CreateOrEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

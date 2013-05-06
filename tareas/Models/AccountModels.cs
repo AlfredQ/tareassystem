@@ -15,11 +15,11 @@ namespace tareas.Models
         {
         }
 
-        public DbSet<UserProfile> UserProfiles { get; set; }
+        public DbSet<TareaUserProfile> UserProfiles { get; set; }
     }
 
-    [Table("UserProfile")]
-    public class UserProfile
+    [Table("TareaUserProfile")]
+    public class TareaUserProfile
     {
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]

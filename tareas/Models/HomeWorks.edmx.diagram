@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4229329563f74da19fc7289b440fac6c" Name="Diagram1">
+        <EntityTypeShape EntityType="HomeWorkModel.homework" Width="1.5" PointX="3.25" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HomeWorkModel.matter" Width="1.5" PointX="3" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HomeWorkModel.rateHomeWork" Width="1.5" PointX="10" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HomeWorkModel.uploadHomework" Width="1.5" PointX="7" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HomeWorkModel.UserProfile" Width="1.5" PointX="3.75" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HomeWorkModel.webpages_Membership" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HomeWorkModel.webpages_OAuthMembership" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HomeWorkModel.webpages_Roles" Width="1.5" PointX="1.125" PointY="0.875" IsExpanded="true" />
+        <AssociationConnector Association="HomeWorkModel.FK__homework__date_e__21B6055D" ManuallyRouted="false" />
+        <AssociationConnector Association="HomeWorkModel.FK__homework__idUs__22AA2996" ManuallyRouted="false" />
+        <AssociationConnector Association="HomeWorkModel.FK__uploadHome__idHo__2C3393D0" ManuallyRouted="false" />
+        <AssociationConnector Association="HomeWorkModel.FK__rateHomeWo__idUp__31EC6D26" ManuallyRouted="false" />
+        <AssociationConnector Association="HomeWorkModel.FK__rateHomeWo__idUs__32E0915F" ManuallyRouted="false" />
+        <AssociationConnector Association="HomeWorkModel.FK__uploadHome__idUs__2D27B809" ManuallyRouted="false" />
+        <AssociationConnector Association="HomeWorkModel.webpages_UsersInRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

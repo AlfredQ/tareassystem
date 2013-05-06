@@ -1,0 +1,61 @@
+﻿@model tareas.Models.ModelViews.MateriasView
+
+<script src="~/Scripts/jquery-1.7.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+<ul>
+@foreach (var item in Model.materias) 
+{
+    <li>
+        <div>
+            <b>@item.code</b>
+        </div>
+        <div>
+            @item.name
+        </div>
+        <div>
+            <ul>
+                
+                <li>
+                   <a href="/Materias/Edit/@item.id">Editar</a>
+                </li>
+                <li>
+                    <a href="/Materias/Delete/@item.id">Borrar</a>
+                </li>
+            </ul>
+        </div>
+    </li>    
+}
+</ul>
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>matter</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.code)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.code)
+            @Html.ValidationMessageFor(model => model.code)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.name)
+            @Html.ValidationMessageFor(model => model.name)
+        </div>
+        
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HomeWorkModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="HomeEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="homework" EntityType="HomeWorkModel.homework" />
+    <EntitySet Name="matter" EntityType="HomeWorkModel.matter" />
+    <EntitySet Name="rateHomeWork" EntityType="HomeWorkModel.rateHomeWork" />
+    <EntitySet Name="uploadHomework" EntityType="HomeWorkModel.uploadHomework" />
+    <EntitySet Name="webpages_Membership" EntityType="HomeWorkModel.webpages_Membership" />
+    <EntitySet Name="webpages_OAuthMembership" EntityType="HomeWorkModel.webpages_OAuthMembership" />
+    <EntitySet Name="webpages_Roles" EntityType="HomeWorkModel.webpages_Roles" />
+    <EntitySet Name="webpages_UsersInRoles" EntityType="HomeWorkModel.webpages_UsersInRoles" />
+    <AssociationSet Name="FK__homework__date_e__21B6055D" Association="HomeWorkModel.FK__homework__date_e__21B6055D">
+      <End Role="matter" EntitySet="matter" />
+      <End Role="homework" EntitySet="homework" />
+    </AssociationSet>
+    <AssociationSet Name="FK__uploadHome__idHo__2C3393D0" Association="HomeWorkModel.FK__uploadHome__idHo__2C3393D0">
+      <End Role="homework" EntitySet="homework" />
+      <End Role="uploadHomework" EntitySet="uploadHomework" />
+    </AssociationSet>
+    <AssociationSet Name="FK__rateHomeWo__idUp__31EC6D26" Association="HomeWorkModel.FK__rateHomeWo__idUp__31EC6D26">
+      <End Role="uploadHomework" EntitySet="uploadHomework" />
+      <End Role="rateHomeWork" EntitySet="rateHomeWork" />
+    </AssociationSet>
+    <AssociationSet Name="fk_RoleId" Association="HomeWorkModel.fk_RoleId">
+      <End Role="webpages_Roles" EntitySet="webpages_Roles" />
+      <End Role="webpages_UsersInRoles" EntitySet="webpages_UsersInRoles" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="homework">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="idMa" Type="Int32" Nullable="false" />
+    <Property Name="idUs" Type="Int32" Nullable="false" />
+    <Property Name="descriptions" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="urldownload" Type="String" Nullable="false" MaxLength="250" Unicode="false" FixedLength="false" />
+    <Property Name="title" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+    <Property Name="date_emision" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="date_end" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="matter" Relationship="HomeWorkModel.FK__homework__date_e__21B6055D" FromRole="homework" ToRole="matter" />
+    <NavigationProperty Name="uploadHomework" Relationship="HomeWorkModel.FK__uploadHome__idHo__2C3393D0" FromRole="homework" ToRole="uploadHomework" />
+  </EntityType>
+  <EntityType Name="matter">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="code" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+    <Property Name="date_register" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="homework" Relationship="HomeWorkModel.FK__homework__date_e__21B6055D" FromRole="matter" ToRole="homework" />
+  </EntityType>
+  <EntityType Name="rateHomeWork">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="rate" Type="Double" Nullable="false" />
+    <Property Name="observation" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="idUs" Type="Int32" Nullable="false" />
+    <Property Name="idUp" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="uploadHomework" Relationship="HomeWorkModel.FK__rateHomeWo__idUp__31EC6D26" FromRole="rateHomeWork" ToRole="uploadHomework" />
+  </EntityType>
+  <EntityType Name="uploadHomework">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="idHo" Type="Int32" Nullable="false" />
+    <Property Name="idUs" Type="Int32" Nullable="false" />
+    <Property Name="url" Type="String" Nullable="false" MaxLength="250" Unicode="false" FixedLength="false" />
+    <Property Name="descriptions" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="date_send" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="homework" Relationship="HomeWorkModel.FK__uploadHome__idHo__2C3393D0" FromRole="uploadHomework" ToRole="homework" />
+    <NavigationProperty Name="rateHomeWork" Relationship="HomeWorkModel.FK__rateHomeWo__idUp__31EC6D26" FromRole="uploadHomework" ToRole="rateHomeWork" />
+  </EntityType>
+  <EntityType Name="webpages_Membership">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="ConfirmationToken" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="IsConfirmed" Type="Boolean" />
+    <Property Name="LastPasswordFailureDate" Type="DateTime" Precision="3" />
+    <Property Name="PasswordFailuresSinceLastSuccess" Type="Int32" Nullable="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="PasswordChangedDate" Type="DateTime" Precision="3" />
+    <Property Name="PasswordSalt" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="PasswordVerificationToken" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="PasswordVerificationTokenExpirationDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="webpages_OAuthMembership">
+    <Key>
+      <PropertyRef Name="Provider" />
+      <PropertyRef Name="ProviderUserId" />
+    </Key>
+    <Property Name="Provider" Type="String" Nullable="false" MaxLength="30" Unicode="true" FixedLength="false" />
+    <Property Name="ProviderUserId" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="webpages_Roles">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="webpages_UsersInRoles" Relationship="HomeWorkModel.fk_RoleId" FromRole="webpages_Roles" ToRole="webpages_UsersInRoles" />
+  </EntityType>
+  <EntityType Name="webpages_UsersInRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="webpages_Roles" Relationship="HomeWorkModel.fk_RoleId" FromRole="webpages_UsersInRoles" ToRole="webpages_Roles" />
+  </EntityType>
+  <Association Name="FK__homework__date_e__21B6055D">
+    <End Role="matter" Type="HomeWorkModel.matter" Multiplicity="1" />
+    <End Role="homework" Type="HomeWorkModel.homework" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="matter">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="homework">
+        <PropertyRef Name="idMa" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__uploadHome__idHo__2C3393D0">
+    <End Role="homework" Type="HomeWorkModel.homework" Multiplicity="1" />
+    <End Role="uploadHomework" Type="HomeWorkModel.uploadHomework" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="homework">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="uploadHomework">
+        <PropertyRef Name="idHo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__rateHomeWo__idUp__31EC6D26">
+    <End Role="uploadHomework" Type="HomeWorkModel.uploadHomework" Multiplicity="1" />
+    <End Role="rateHomeWork" Type="HomeWorkModel.rateHomeWork" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="uploadHomework">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="rateHomeWork">
+        <PropertyRef Name="idUp" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_RoleId">
+    <End Role="webpages_Roles" Type="HomeWorkModel.webpages_Roles" Multiplicity="1" />
+    <End Role="webpages_UsersInRoles" Type="HomeWorkModel.webpages_UsersInRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="webpages_Roles">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="webpages_UsersInRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

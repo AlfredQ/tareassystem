@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fd220fa44f614a30baad5a5aafed3126" Name="Diagram1">
+        <EntityTypeShape EntityType="HomeWorkModel.homework" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="HomeWorkModel.matter" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HomeWorkModel.rateHomeWork" Width="1.5" PointX="7.5" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="HomeWorkModel.uploadHomework" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HomeWorkModel.webpages_Membership" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HomeWorkModel.webpages_OAuthMembership" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HomeWorkModel.webpages_Roles" Width="1.5" PointX="0.75" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HomeWorkModel.webpages_UsersInRoles" Width="1.5" PointX="3" PointY="4.875" IsExpanded="true" />
+        <AssociationConnector Association="HomeWorkModel.FK__homework__date_e__21B6055D" ManuallyRouted="false" />
+        <AssociationConnector Association="HomeWorkModel.FK__uploadHome__idHo__2C3393D0" ManuallyRouted="false" />
+        <AssociationConnector Association="HomeWorkModel.FK__rateHomeWo__idUp__31EC6D26" ManuallyRouted="false" />
+        <AssociationConnector Association="HomeWorkModel.fk_RoleId" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

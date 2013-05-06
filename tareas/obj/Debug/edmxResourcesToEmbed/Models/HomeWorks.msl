@@ -48,14 +48,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="UserProfile">
-      <EntityTypeMapping TypeName="HomeWorkModel.UserProfile">
-        <MappingFragment StoreEntitySet="UserProfile">
-          <ScalarProperty Name="UserId" ColumnName="UserId" />
-          <ScalarProperty Name="UserName" ColumnName="UserName" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="webpages_Membership">
       <EntityTypeMapping TypeName="HomeWorkModel.webpages_Membership">
         <MappingFragment StoreEntitySet="webpages_Membership">
@@ -90,13 +82,5 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <AssociationSetMapping Name="webpages_UsersInRoles" TypeName="HomeWorkModel.webpages_UsersInRoles" StoreEntitySet="webpages_UsersInRoles">
-      <EndProperty Name="webpages_Roles">
-        <ScalarProperty Name="RoleId" ColumnName="RoleId" />
-      </EndProperty>
-      <EndProperty Name="UserProfile">
-        <ScalarProperty Name="UserId" ColumnName="UserId" />
-      </EndProperty>
-    </AssociationSetMapping>
   </EntityContainerMapping>
 </Mapping>

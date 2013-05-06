@@ -21,6 +21,5 @@ namespace tareas.Models
         public int idUp { get; set; }
     
         public virtual uploadHomework uploadHomework { get; set; }
-        public virtual TareaUserProfile UserProfile { get; set; }
     }
 }

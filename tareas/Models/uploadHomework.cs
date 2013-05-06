@@ -28,6 +28,5 @@ namespace tareas.Models
     
         public virtual homework homework { get; set; }
         public virtual ICollection<rateHomeWork> rateHomeWork { get; set; }
-        public virtual TareaUserProfile UserProfile { get; set; }
     }
 }

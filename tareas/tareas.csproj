@@ -165,49 +165,53 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MateriasController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\homework.cs">
-      <DependentUpon>HomeWorks.tt</DependentUpon>
+      <DependentUpon>HomeWorkModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\HomeWorks.Context.cs">
+    <Compile Include="Models\HomeWorkContext.cs" />
+    <Compile Include="Models\HomeWorkModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>HomeWorks.Context.tt</DependentUpon>
+      <DependentUpon>HomeWorkModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\HomeWorks.cs">
+    <Compile Include="Models\HomeWorkModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>HomeWorks.tt</DependentUpon>
+      <DependentUpon>HomeWorkModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\HomeWorks.Designer.cs">
+    <Compile Include="Models\HomeWorkModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>HomeWorks.edmx</DependentUpon>
+      <DependentUpon>HomeWorkModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\matter.cs">
-      <DependentUpon>HomeWorks.tt</DependentUpon>
+      <DependentUpon>HomeWorkModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ModelViews\MateriasView.cs" />
+    <Compile Include="Models\ModelViews\TareasView.cs" />
     <Compile Include="Models\rateHomeWork.cs">
-      <DependentUpon>HomeWorks.tt</DependentUpon>
+      <DependentUpon>HomeWorkModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\uploadHomework.cs">
-      <DependentUpon>HomeWorks.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\UserProfile.cs">
-      <DependentUpon>HomeWorks.tt</DependentUpon>
+      <DependentUpon>HomeWorkModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\webpages_Membership.cs">
-      <DependentUpon>HomeWorks.tt</DependentUpon>
+      <DependentUpon>HomeWorkModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\webpages_OAuthMembership.cs">
-      <DependentUpon>HomeWorks.tt</DependentUpon>
+      <DependentUpon>HomeWorkModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\webpages_Roles.cs">
-      <DependentUpon>HomeWorks.tt</DependentUpon>
+      <DependentUpon>HomeWorkModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\webpages_UsersInRoles.cs">
+      <DependentUpon>HomeWorkModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -268,22 +272,22 @@
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
-    <EntityDeploy Include="Models\HomeWorks.edmx">
+    <EntityDeploy Include="Models\HomeWorkModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>HomeWorks.Designer.cs</LastGenOutput>
+      <LastGenOutput>HomeWorkModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\HomeWorks.Context.tt">
+    <Content Include="Models\HomeWorkModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>HomeWorks.edmx</DependentUpon>
-      <LastGenOutput>HomeWorks.Context.cs</LastGenOutput>
+      <DependentUpon>HomeWorkModel.edmx</DependentUpon>
+      <LastGenOutput>HomeWorkModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\HomeWorks.edmx.diagram">
-      <DependentUpon>HomeWorks.edmx</DependentUpon>
+    <Content Include="Models\HomeWorkModel.edmx.diagram">
+      <DependentUpon>HomeWorkModel.edmx</DependentUpon>
     </Content>
-    <Content Include="Models\HomeWorks.tt">
+    <Content Include="Models\HomeWorkModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>HomeWorks.edmx</DependentUpon>
-      <LastGenOutput>HomeWorks.cs</LastGenOutput>
+      <DependentUpon>HomeWorkModel.edmx</DependentUpon>
+      <LastGenOutput>HomeWorkModel.cs</LastGenOutput>
     </Content>
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
@@ -339,6 +343,10 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
+    <Content Include="Views\Materias\Index.cshtml" />
+    <Content Include="Views\Materias\Details.cshtml" />
+    <Content Include="Views\Materias\Edit.cshtml" />
+    <Content Include="Views\Materias\Lista.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -29,7 +29,6 @@ namespace tareas.Models
         public System.DateTime date_end { get; set; }
     
         public virtual matter matter { get; set; }
-        public virtual TareaUserProfile UserProfile { get; set; }
         public virtual ICollection<uploadHomework> uploadHomework { get; set; }
     }
 }

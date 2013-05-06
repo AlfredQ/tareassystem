@@ -7,6 +7,7 @@ namespace tareas.Models.ModelViews
 {
     public class TareasView:matter
     {
-        public IEnumerable<homework> tareas { set; get;}
+        public IEnumerable<HomeWorkView> tareas { set; get;}
+        
     }
 }

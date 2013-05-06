@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using tareas.Models.ModelViews;
+using System.Web.Mvc;
+using System.Web.Security;
+using tareas.Controllers;
 namespace tareas.Models
 {
     public class HomeWorkContext
@@ -65,10 +68,54 @@ namespace tareas.Models
         }
         #endregion
         //carga la página principal
-        public IEnumerable<TareasView> loadMainPage()
+        public List<TareasView> loadMainPage(int id)
         {
-            IEnumerable<TareasView> lista = contexto.matter.Select(a => new TareasView() { code = a.code, name=a.name,tareas=a.homework});
-            return lista;
+            IEnumerable<TareasView> lista = contexto.matter.Select(a => new TareasView()
+            {
+                code = a.code,
+                name = a.name,
+                tareas = a.homework.Select(b => new HomeWorkView() {idUs=b.idUs,title=b.title,descriptions=b.descriptions,urldownload=b.urldownload})
+            });
+            UsersContext user = new UsersContext();
+            List<TareasView> data = lista.ToList();
+            foreach (TareasView item in data)
+            {
+                //item.name="HOLAAA";
+                foreach(HomeWorkView work in item.tareas.ToList())
+                {
+                    work.add = true;
+                    IEnumerable<webpages_Roles> roles=contexto.webpages_UsersInRoles.Where(a => a.UserId == id).Select(a => a.webpages_Roles);
+                    if (roles.Count() > 0) 
+                    {
+                        if(work.idUs==id)
+                        {
+                            foreach(var us in roles)
+                            {
+                                switch(us.RoleName)
+                                {
+                                    case "AgregarTarea": 
+                                        {
+                                           work.add = true;
+                                            break;
+                                        }
+                                    case "EditarTarea": 
+                                        {
+                                            work.edit = true;
+                                            break;
+                                        }
+                                    case "BorrarTarea": 
+                                        {
+                                            work.delete = true;
+                                            break;
+                                        }
+                                }
+                            }
+                        }
+                    } 
+              }
+            }
+            //dynamic dd = arreglo;
+            return data;
         }
     }
 }

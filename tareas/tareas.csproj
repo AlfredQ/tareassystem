@@ -193,6 +193,7 @@
     <Compile Include="Models\matter.cs">
       <DependentUpon>HomeWorkModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ModelViews\HomeWorkView.cs" />
     <Compile Include="Models\ModelViews\MateriasView.cs" />
     <Compile Include="Models\ModelViews\TareasView.cs" />
     <Compile Include="Models\rateHomeWork.cs">

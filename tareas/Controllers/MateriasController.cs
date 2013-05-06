@@ -75,8 +75,19 @@ namespace tareas.Controllers
         #endregion
         public ViewResult Lista()
         {
-            IEnumerable<TareasView> model = db.loadMainPage();
-            return View(model);
+            List<TareasView> model;
+            if (Session["id"] != null)
+            {
+                model = db.loadMainPage((int)Session["id"]);
+
+            }
+            else 
+            {
+                model = db.loadMainPage(0);
+                
+            }
+            IEnumerable<TareasView> m = (IEnumerable<TareasView>)model;
+            return View(m);
         }
 
     }

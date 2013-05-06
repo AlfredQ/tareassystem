@@ -36,6 +36,22 @@
                         <div>@work.title</div>
                         <div>@work.date_emision</div>
                         <div>@work.date_end</div>
+                        <div id="menu">
+                            <ul>
+                                @if (@work.add == true) 
+                                {
+                                    <li><a href="">Agregar Tarea</a> </li>   
+                                }
+                                @if (@work.edit == true) 
+                                {
+                                    <li><a href="">Editar</a> </li>   
+                                }
+                                @if (@work.delete == true) 
+                                {
+                                    <li><a href="">Borrar</a> </li>   
+                                }
+                            </ul>
+                        </div>
                     }
                 </li>
             </ul>

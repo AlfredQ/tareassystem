@@ -10,7 +10,6 @@ using Microsoft.Web.WebPages.OAuth;
 using WebMatrix.WebData;
 using tareas.Filters;
 using tareas.Models;
-
 namespace tareas.Controllers
 {
     [Authorize]
@@ -37,6 +36,10 @@ namespace tareas.Controllers
         {
             if (ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe))
             {
+                UsersContext USER=new UsersContext();
+                Session["username"] = model.UserName;
+                Session["id"] = USER.UserProfiles.Where(a=>a.UserName==model.UserName).First().UserId;
+                
                 return RedirectToLocal(returnUrl);
             }
 

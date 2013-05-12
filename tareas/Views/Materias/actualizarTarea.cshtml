@@ -1,0 +1,155 @@
+﻿@model tareas.Models.homework
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>actualizarTarea</title>
+    <script>
+        $(document).ready(function () {
+            var information = "";
+            var informationnames = "";
+            var informationRoutes = "";
+            
+            $("#actualizar_archivos").tabs();
+            $("#dialog-confirm").hide();
+            $("a#deleteFiles").each(function () {
+                $(this).click(function (e) {
+                    e.preventDefault();
+                    var obj = $(this);
+                    $("#dialog-confirm").show();
+                    $("#dialog-confirm").dialog({
+                        resizable: false,
+                        height: 230,
+                        modal: true,
+                        buttons: {
+                            "Continuar": function () {
+                                
+                                $.post(obj.attr("href"), { idFile: obj.attr("idFile"), idHome: obj.attr("idHome") }, function (data) {
+                                    if (data) {
+                                        obj.parent().hide("slow");
+                                    } else {
+                                        alert("Se ha producido un error en el borrado del los archivos");
+                                    }
+                                }, "json");
+                                
+                                $(this).dialog("close");
+                            },
+                            Cancel: function () {
+                                $(this).dialog("close");
+                            }
+                        }
+                    });
+
+
+                    
+                });
+            });
+            var myDropzone = new Dropzone("div#myId", {
+                url: "/Materias/SaveFiles",
+                paramName: "file",
+
+                maxFilesize: 10, // MB
+                accept: function (file, done) {
+                    done();
+                },
+                complete: function (data, r) {
+                    information += r.fileroute;
+                    informationnames += r.filename;
+                    $("#filenames").val(informationnames);
+                    $("#urldownload").val(information);
+                    $("#urldownload").val(information);
+                    var collecion_nombres = r.filename.split("|");
+                    for (var i = 0; i < collecion_nombres.length - 1; i++)
+                    {
+                        $("#files_update").append("<li id='color'>" + collecion_nombres[i]+ "</li>");
+                    }
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    @using (Html.BeginForm()) {
+        @Html.ValidationSummary(true)
+    
+        <fieldset>
+            <legend>homework</legend>
+
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.descriptions)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.descriptions)
+                @Html.ValidationMessageFor(model => model.descriptions)
+            </div>
+            <div id="actualizar_archivos">
+                <ul>
+                    <li><a href="#tabs-1">Archivos</a></li>
+                    <li><a href="#tabs-2">Subir Nuevos</a></li>
+                </ul>
+                <div id="tabs-1">
+                    <ul id="files_update">
+                    @foreach(var files in Model.filesHomework)
+                    {
+                        <li >
+                            @files.descripcion
+                            <a href="/Materias/borrar_archivos/" idFile="@files.id" idHome="@Model.id" id="deleteFiles">Borrar</a>
+                        </li>    
+                    }
+                    </ul>
+                </div>
+                <div id="tabs-2">
+                    <div id="myId" class="dropzone">
+
+                    </div>
+                </div>
+            </div>
+            
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.title)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.title)
+                @Html.ValidationMessageFor(model => model.title)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.date_emision)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.date_emision)
+                @Html.ValidationMessageFor(model => model.date_emision)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.date_end)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.date_end)
+                @Html.ValidationMessageFor(model => model.date_end)
+                <input type="hidden" id="filenames" name="filenames" value=""/>
+                <input type="hidden" id="urldownload" name="urldownload" value="none" />
+            </div>
+    
+            <p>
+                <input type="submit" value="Save" />
+            </p>
+        </fieldset>
+    }
+    
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+    <div id="dialog-confirm" title="Empty the recycle bin?">
+        <p><span class="ui-icon ui-icon-alert" style="float: left; margin: 0 7px 20px 0;"></span>Es pertinente informarle que esta acción borrara todos los archivos adjuntos a esta tarea. ¿Desea Continuar?</p>
+    </div>
+</body>
+</html>

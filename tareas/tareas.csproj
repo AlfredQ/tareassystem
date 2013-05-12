@@ -201,6 +201,7 @@
     </Compile>
     <Compile Include="Models\ModelViews\HomeWorkView.cs" />
     <Compile Include="Models\ModelViews\MateriasView.cs" />
+    <Compile Include="Models\ModelViews\ResultUpload.cs" />
     <Compile Include="Models\ModelViews\TareasView.cs" />
     <Compile Include="Models\rateHomeWork.cs">
       <DependentUpon>HomeWorkModel.tt</DependentUpon>
@@ -381,6 +382,7 @@
     <Content Include="Views\Materias\AgregarTarea.cshtml" />
     <Content Include="Views\Home\Upload.cshtml" />
     <Content Include="Views\Materias\upload.cshtml" />
+    <Content Include="Views\Materias\actualizarTarea.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

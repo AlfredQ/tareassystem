@@ -95,16 +95,16 @@ namespace tareas.Controllers
             return View();
         }
         [HttpPost]
-        public ViewResult AgregarTarea(homework home) 
+        public RedirectToRouteResult AgregarTarea(homework home, string filenames) 
         {
             if (Session["id"] != null)
                 home.idUs = (int)Session["id"];
-            if (db.insertHomeworks(home))
+            if (db.insertHomeworks(home,filenames))
             {
-                return View();
+                return RedirectToAction("Lista");
             }
             else {
-                return View();
+                return RedirectToAction("AgregarTarea");
                 
             }
         }
@@ -121,7 +121,7 @@ namespace tareas.Controllers
         {
             HttpFileCollectionBase files = Request.Files;
             string path = Server.MapPath("~/uploadhomeworks/");
-            
+            string  nombres_de_arcnivos = "";
             string respuesta = "";
             for (int i = 0; i < files.Count; i++)
             {
@@ -133,6 +133,7 @@ namespace tareas.Controllers
                         respuesta = "false";
                         return Json(data: respuesta);
                     }
+                    nombres_de_arcnivos += files[i].FileName + "|";
                     string extension = archivoenpartes[1];
                     string nombredearchivo = archivoenpartes[0];
                     string name = DateTime.Now.GetHashCode().ToString();
@@ -145,7 +146,34 @@ namespace tareas.Controllers
                 }
             }
 
-            return Json(data: respuesta);
+            return Json(data: new ResultUpload() {filename=nombres_de_arcnivos,fileroute=respuesta });
+        }
+        public JsonResult borrar_archivos(int idHome,int idFile) 
+        {
+            bool resultadodeborradodearchivos = db.deleteFilesHomeWork(idFile);
+
+            return Json(data: resultadodeborradodearchivos);
+        }
+        /*
+         Edicion de archivos
+         */
+        public ViewResult actualizarTarea(int id) 
+        {
+            homework tarea=db.getTareas(id);
+
+            return View(tarea);
+        }
+        [HttpPost]
+        public RedirectToRouteResult actualizarTarea(homework home, string filenames) 
+        {
+            db.updateTarea(home,filenames);
+            return RedirectToAction("Lista");
+        }
+        public JsonResult borrarTarea(int id) 
+        {
+            bool result = false;
+            result=db.deleteAllHomework(id);
+            return Json(data:result);
         }
     }
 }

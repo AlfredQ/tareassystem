@@ -75,7 +75,7 @@ namespace tareas.Models
                 code = a.code,
                 name = a.name,
                 id=a.id,
-                tareas = a.homework.Select(b => new HomeWorkView() {idUs=b.idUs,title=b.title,descriptions=b.descriptions,urldownload=b.urldownload,date_emision=b.date_emision,date_end=b.date_end})
+                tareas = a.homework.Select(b => new HomeWorkView() {idUs=b.idUs,title=b.title,descriptions=b.descriptions,urldownload=b.urldownload,date_emision=b.date_emision,date_end=b.date_end,id=b.id})
             });
             UsersContext user = new UsersContext();
             List<TareasView> data = lista.ToList();
@@ -133,31 +133,115 @@ namespace tareas.Models
             return false;
         }
 
-        internal bool insertHomeworks(homework home)
+        internal bool insertHomeworks(homework home, string filenames)
         {
             /*
              Insertamos la talbla correspondiente a los archivos de cada tarea emitida
              * sobre la tabla fileHomework
              */
-            string[] routefiles=home.urldownload.Split('|');
+            string dataurl = home.urldownload;
                 home.urldownload = "none";
                 contexto.homework.Add(home);
                 contexto.SaveChanges();
 
+                addWorksFiles(dataurl,home.id,filenames);
+                return true;
+        }
+        internal bool addWorksFiles(string url,int idHome,string filenames) 
+        {
+            string[] routefiles = url.Split('|');
+            string[] file = filenames.Split('|');
             int i;
-            for (i = 0; i < routefiles.Length - 1;i++ )
+            for (i = 0; i < routefiles.Length - 1; i++)
             {
                 filesHomework files = new filesHomework()
                 {
-                    idHome=home.id,
-                    url=routefiles[i],
-                    descripcion=""
+                    idHome = idHome,
+                    url = routefiles[i],
+                    descripcion = file[i]
                 };
+
+                contexto.filesHomework.Add(files);
                 
-                    contexto.filesHomework.Add(files);
-                    contexto.SaveChanges();
             }
+            contexto.SaveChanges();
             return true;
+        }
+        internal homework getTareas(int id)
+        {
+
+            //IEnumerable<filesHomework> result=contexto.filesHomework.Where(a => a.idHome == id);
+            homework tarea = contexto.homework.Where(a => a.id == id).First();
+            return tarea;
+        }
+        internal bool deleteAllFilesHomework(int id) 
+        {
+            IEnumerable<filesHomework> lista=contexto.filesHomework.Where(a => a.idHome == id);
+            foreach(filesHomework item in lista)
+            {
+                contexto.filesHomework.Remove(item);
+            }
+            try
+            {
+                contexto.SaveChanges();
+                return true;
+
+            }
+            catch {
+                return false;
+            }
+        }
+        internal void updateTarea(homework home,string filesnames)
+        {
+            homework tarea = getTareas(home.id);
+            tarea.title = home.title;
+            tarea.date_emision = home.date_emision;
+            tarea.date_end = home.date_end;
+            tarea.descriptions = home.descriptions;
+            contexto.SaveChanges();
+            if (home.urldownload != "none") 
+            {
+                //deleteFilesHomework(home.id);
+                addWorksFiles(home.urldownload,home.id,filesnames);
+            }
+        }
+
+        internal bool deleteHomeWork(int idHome)
+        {
+            homework home= contexto.homework.Where(a => a.id == idHome).First();
+            contexto.homework.Remove(home);
+            try
+            {
+
+                contexto.SaveChanges();
+                return true;
+            }
+            catch {
+                return false;
+            }
+        }
+
+        internal bool deleteFilesHomeWork(int idFile)
+        {
+           filesHomework archivos=contexto.filesHomework.Where(a => a.id == idFile).First();
+           contexto.filesHomework.Remove(archivos);
+           try
+           {
+               contexto.SaveChanges();
+               return true; 
+           }
+           catch {
+               return false;
+           }
+            
+        }
+
+        internal bool deleteAllHomework(int id)
+        {
+            if (deleteAllFilesHomework(id)) {
+                return deleteHomeWork(id);
+            };
+            return false;
         }
     }
 }

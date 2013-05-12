@@ -4,10 +4,11 @@
     $(document).ready(function () {
         $("#VentanaModal").dialog({
             autoOpen: false,
-            width: 700,
+            width: 750,
             height: 600,
             modal:true
         });
+        $("#modalAlert").hide();
         $("a#agregarMateria").each(function () {
             $(this).click(function (e) {
 
@@ -17,6 +18,41 @@
 
             });
         })
+        $("a#BorrarMateria").each(function () {
+            $(this).click(function (e) {
+                e.preventDefault();
+                var button = $(this);
+                $("#modalAlert").dialog({
+                    resizable: false,
+                    modal:true,
+                    height: 200,
+                    buttons: {
+                        "Aceptar": function ()
+                        {
+                            $(this).dialog("close");
+                            $.post(button.attr("href"), {}, function (data) {
+                                if (data)
+                                {
+                                    button.parent().parent().parent().parent().hide("slow");
+                                }
+                            }, "json");
+                        },
+                        cancel: function () {
+                            $(this).dialog("close");
+                        }
+                    }
+                });
+            });
+        });
+        $("a#Editar").each(function () {
+            $(this).click(function (e) {
+                e.preventDefault();
+                e.preventDefault();
+                $("#containerForm").load($(this).attr("href"));
+                $("#VentanaModal").dialog("open");
+
+            });
+        });
         
     });
 </script>
@@ -56,9 +92,10 @@
         </td>
         <td>
             <ul>
-                <li>
-                    @foreach(var work in item.tareas)
+                 @foreach(var work in item.tareas)
                     {
+                <li>
+                   
                         <div>@work.title</div>
                         <div>@work.date_emision</div>
                         <div>@work.date_end</div>
@@ -67,16 +104,17 @@
                                
                                 @if (@work.edit == true) 
                                 {
-                                    <li><a href="">Editar</a> </li>   
+                                    <li><a href="/Materias/actualizarTarea/@work.id" id="Editar">Editar</a> </li>   
                                 }
                                 @if (@work.delete == true) 
                                 {
-                                    <li><a href="">Borrar</a> </li>   
+                                    <li><a href="/Materias/borrarTarea/@work.id" id="BorrarMateria">Borrar</a> </li>   
                                 }
                             </ul>
                         </div>
-                    }
+                    
                 </li>
+                     }
             </ul>
         </td>
     </tr>
@@ -87,4 +125,9 @@
     <div id="containerForm">
 
     </div>
+</div>
+<div id="modalAlert">
+    <p>
+        ¿Realmente desea Borrar esta tarea publicada?
+    </p>
 </div>

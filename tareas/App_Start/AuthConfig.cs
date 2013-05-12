@@ -23,8 +23,8 @@ namespace tareas
             //    consumerSecret: "");
 
             //OAuthWebSecurity.RegisterFacebookClient(
-            //    appId: "",
-            //    appSecret: "");
+              //  appId: "",
+              //  appSecret: "");
 
             //OAuthWebSecurity.RegisterGoogleClient();
         }

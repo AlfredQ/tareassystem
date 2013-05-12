@@ -16,6 +16,7 @@ namespace tareas.Models
     {
         public homework()
         {
+            this.filesHomework = new HashSet<filesHomework>();
             this.uploadHomework = new HashSet<uploadHomework>();
         }
     
@@ -28,6 +29,7 @@ namespace tareas.Models
         public System.DateTime date_emision { get; set; }
         public System.DateTime date_end { get; set; }
     
+        public virtual ICollection<filesHomework> filesHomework { get; set; }
         public virtual matter matter { get; set; }
         public virtual ICollection<uploadHomework> uploadHomework { get; set; }
     }

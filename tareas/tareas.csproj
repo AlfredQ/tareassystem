@@ -171,6 +171,12 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\files.cs">
+      <DependentUpon>HomeWorkModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\filesHomework.cs">
+      <DependentUpon>HomeWorkModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\homework.cs">
       <DependentUpon>HomeWorkModel.tt</DependentUpon>
     </Compile>
@@ -200,6 +206,9 @@
       <DependentUpon>HomeWorkModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\uploadHomework.cs">
+      <DependentUpon>HomeWorkModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\usuario_materias.cs">
       <DependentUpon>HomeWorkModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\webpages_Membership.cs">
@@ -271,8 +280,16 @@
     <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="css\basic.css" />
+    <Content Include="css\dropzone.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Images\spritemap%402x.png" />
+    <Content Include="Images\spritemap.png" />
+    <Content Include="Scripts\downloads\css\stylus\basic.styl" />
+    <Content Include="Scripts\downloads\css\stylus\dropzone.styl" />
+    <Content Include="css\stylus\basic.styl" />
+    <Content Include="css\stylus\dropzone.styl" />
     <EntityDeploy Include="Models\HomeWorkModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>HomeWorkModel.Designer.cs</LastGenOutput>
@@ -291,11 +308,24 @@
       <LastGenOutput>HomeWorkModel.cs</LastGenOutput>
     </Content>
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
-    <Content Include="Scripts\jquery-1.7.1.js" />
+    <Content Include="Scripts\downloads\css\basic.css" />
+    <Content Include="Scripts\downloads\css\dropzone.css" />
+    <Content Include="Scripts\downloads\dropzone-amd-module.js" />
+    <Content Include="Scripts\downloads\dropzone-amd-module.min.js" />
+    <Content Include="Scripts\downloads\dropzone.js" />
+    <Content Include="Scripts\downloads\dropzone.min.js" />
+    <Content Include="Scripts\downloads\images\spritemap%402x.png" />
+    <Content Include="Scripts\downloads\images\spritemap.png" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.9.1.js" />
     <Content Include="Scripts\jquery-ui-1.8.20.js" />
     <Content Include="Scripts\jquery-ui-1.8.20.min.js" />
+    <Content Include="Scripts\jquery-ui-1.9.2.js" />
+    <Content Include="Scripts\jquery-ui.js" />
+    <Content Include="Scripts\jquery.fileupload-ui.js" />
+    <Content Include="Scripts\jquery.fileupload.js" />
+    <Content Include="Scripts\jquery.iframe-transport.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -348,9 +378,13 @@
     <Content Include="Views\Materias\Details.cshtml" />
     <Content Include="Views\Materias\Edit.cshtml" />
     <Content Include="Views\Materias\Lista.cshtml" />
+    <Content Include="Views\Materias\AgregarTarea.cshtml" />
+    <Content Include="Views\Home\Upload.cshtml" />
+    <Content Include="Views\Materias\upload.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="uploadhomeworks\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

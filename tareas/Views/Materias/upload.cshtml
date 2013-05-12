@@ -1,0 +1,45 @@
+﻿
+<script>
+  
+    //Dropzone.
+    /*Dropzone.options.myAwesomeDropzone = {
+        paramName: "file",
+        maxFilesize: 4, // MB
+        accept: function (file, done) {
+            done();
+        },
+        complete: function (data,r)
+        {
+            console.debug(r);
+        }
+    };*/
+    $(document).ready(function () {
+        var myDropzone = new Dropzone("div#myId", {
+            url: "/Materias/SaveFiles",
+            paramName: "file",
+            maxFilesize: 4, // MB
+            accept: function (file, done) {
+                done();
+            },
+            complete: function (data, r) {
+                console.debug(r);
+            }
+        });
+    })
+
+    
+</script> 
+@{
+    ViewBag.Title = "Upload";
+}
+
+<h2>Upload</h2>
+<div id="myId" class="dropzone">
+
+</div>
+<!-- <form action="/Materias/SaveFiles" id="myAwesomeDropzone" class="dropzone" method="post" enctype="multipart/form-data">
+  <div class="fallback">
+    <input name="file" type="file" multiple="multiple"  />
+    <input type="submit"  value="Subir"/>
+  </div>
+</form>-->

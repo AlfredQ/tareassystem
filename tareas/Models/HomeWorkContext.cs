@@ -11,7 +11,7 @@ namespace tareas.Models
     public class HomeWorkContext
     {
         #region adminquery
-        public HomeEntities contexto = new HomeEntities();
+        public Entities contexto = new Entities();
         public HomeWorkContext()
         {
 
@@ -74,16 +74,18 @@ namespace tareas.Models
             {
                 code = a.code,
                 name = a.name,
-                tareas = a.homework.Select(b => new HomeWorkView() {idUs=b.idUs,title=b.title,descriptions=b.descriptions,urldownload=b.urldownload})
+                id=a.id,
+                tareas = a.homework.Select(b => new HomeWorkView() {idUs=b.idUs,title=b.title,descriptions=b.descriptions,urldownload=b.urldownload,date_emision=b.date_emision,date_end=b.date_end})
             });
             UsersContext user = new UsersContext();
             List<TareasView> data = lista.ToList();
             foreach (TareasView item in data)
             {
                 //item.name="HOLAAA";
+                item.add = agregarTareaVerificacion(id,item.id);
+                
                 foreach(HomeWorkView work in item.tareas.ToList())
                 {
-                    work.add = true;
                     IEnumerable<webpages_Roles> roles=contexto.webpages_UsersInRoles.Where(a => a.UserId == id).Select(a => a.webpages_Roles);
                     if (roles.Count() > 0) 
                     {
@@ -93,11 +95,6 @@ namespace tareas.Models
                             {
                                 switch(us.RoleName)
                                 {
-                                    case "AgregarTarea": 
-                                        {
-                                           work.add = true;
-                                            break;
-                                        }
                                     case "EditarTarea": 
                                         {
                                             work.edit = true;
@@ -116,6 +113,51 @@ namespace tareas.Models
             }
             //dynamic dd = arreglo;
             return data;
+        }
+
+        private bool agregarTareaVerificacion(int id,int idMa)
+        {
+            //en cado de contar con el permiso asignado
+            //desde la tabla
+            if(contexto.usuario_materias.Where(a=>a.idUs==id&&a.idMa==idMa).Count()>0)
+            {
+                return true;
+            }
+            /*
+             En caso de ser administrador del sistema
+             */
+            if (contexto.webpages_UsersInRoles.Where(a => a.UserId == id && a.webpages_Roles.RoleName == "AgregarTarea").Count() > 0) 
+            {
+                return true;
+            }
+            return false;
+        }
+
+        internal bool insertHomeworks(homework home)
+        {
+            /*
+             Insertamos la talbla correspondiente a los archivos de cada tarea emitida
+             * sobre la tabla fileHomework
+             */
+            string[] routefiles=home.urldownload.Split('|');
+                home.urldownload = "none";
+                contexto.homework.Add(home);
+                contexto.SaveChanges();
+
+            int i;
+            for (i = 0; i < routefiles.Length - 1;i++ )
+            {
+                filesHomework files = new filesHomework()
+                {
+                    idHome=home.id,
+                    url=routefiles[i],
+                    descripcion=""
+                };
+                
+                    contexto.filesHomework.Add(files);
+                    contexto.SaveChanges();
+            }
+            return true;
         }
     }
 }

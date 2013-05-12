@@ -4,33 +4,66 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="HomeWorkModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityContainer Name="HomeWorkModelStoreContainer">
-          <EntitySet Name="homework" EntityType="HomeWorkModel.Store.homework" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="matter" EntityType="HomeWorkModel.Store.matter" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="rateHomeWork" EntityType="HomeWorkModel.Store.rateHomeWork" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="uploadHomework" EntityType="HomeWorkModel.Store.uploadHomework" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="webpages_Membership" EntityType="HomeWorkModel.Store.webpages_Membership" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="webpages_OAuthMembership" EntityType="HomeWorkModel.Store.webpages_OAuthMembership" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="webpages_Roles" EntityType="HomeWorkModel.Store.webpages_Roles" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="webpages_UsersInRoles" EntityType="HomeWorkModel.Store.webpages_UsersInRoles" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="FK__homework__date_e__21B6055D" Association="HomeWorkModel.Store.FK__homework__date_e__21B6055D">
+      <Schema Namespace="Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="ModelStoreContainer">
+          <EntitySet Name="files" EntityType="Model.Store.files" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="filesHomework" EntityType="Model.Store.filesHomework" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="homework" EntityType="Model.Store.homework" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="matter" EntityType="Model.Store.matter" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="rateHomeWork" EntityType="Model.Store.rateHomeWork" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="uploadHomework" EntityType="Model.Store.uploadHomework" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="usuario_materias" EntityType="Model.Store.usuario_materias" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="webpages_Membership" EntityType="Model.Store.webpages_Membership" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="webpages_OAuthMembership" EntityType="Model.Store.webpages_OAuthMembership" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="webpages_Roles" EntityType="Model.Store.webpages_Roles" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="webpages_UsersInRoles" EntityType="Model.Store.webpages_UsersInRoles" store:Type="Tables" Schema="dbo" />
+          <AssociationSet Name="FK__files__idHome__3E52440B" Association="Model.Store.FK__files__idHome__3E52440B">
+            <End Role="uploadHomework" EntitySet="uploadHomework" />
+            <End Role="files" EntitySet="files" />
+          </AssociationSet>
+          <AssociationSet Name="FK__filesHome__idHom__4316F928" Association="Model.Store.FK__filesHome__idHom__4316F928">
+            <End Role="homework" EntitySet="homework" />
+            <End Role="filesHomework" EntitySet="filesHomework" />
+          </AssociationSet>
+          <AssociationSet Name="FK__homework__date_e__21B6055D" Association="Model.Store.FK__homework__date_e__21B6055D">
             <End Role="matter" EntitySet="matter" />
             <End Role="homework" EntitySet="homework" />
           </AssociationSet>
-          <AssociationSet Name="FK__rateHomeWo__idUp__31EC6D26" Association="HomeWorkModel.Store.FK__rateHomeWo__idUp__31EC6D26">
+          <AssociationSet Name="FK__rateHomeWo__idUp__31EC6D26" Association="Model.Store.FK__rateHomeWo__idUp__31EC6D26">
             <End Role="uploadHomework" EntitySet="uploadHomework" />
             <End Role="rateHomeWork" EntitySet="rateHomeWork" />
           </AssociationSet>
-          <AssociationSet Name="FK__uploadHome__idHo__2C3393D0" Association="HomeWorkModel.Store.FK__uploadHome__idHo__2C3393D0">
+          <AssociationSet Name="FK__uploadHome__idHo__2C3393D0" Association="Model.Store.FK__uploadHome__idHo__2C3393D0">
             <End Role="homework" EntitySet="homework" />
             <End Role="uploadHomework" EntitySet="uploadHomework" />
           </AssociationSet>
-          <AssociationSet Name="fk_RoleId" Association="HomeWorkModel.Store.fk_RoleId">
+          <AssociationSet Name="FK__usuario_ma__idMa__48CFD27E" Association="Model.Store.FK__usuario_ma__idMa__48CFD27E">
+            <End Role="matter" EntitySet="matter" />
+            <End Role="usuario_materias" EntitySet="usuario_materias" />
+          </AssociationSet>
+          <AssociationSet Name="fk_RoleId" Association="Model.Store.fk_RoleId">
             <End Role="webpages_Roles" EntitySet="webpages_Roles" />
             <End Role="webpages_UsersInRoles" EntitySet="webpages_UsersInRoles" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="files">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="url" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="descripcion" Type="text" />
+          <Property Name="idHome" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="filesHomework">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="url" Type="varchar" Nullable="false" MaxLength="250" />
+          <Property Name="descripcion" Type="text" />
+          <Property Name="idHome" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="homework">
           <Key>
             <PropertyRef Name="id" />
@@ -70,9 +103,16 @@
           <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="idHo" Type="int" Nullable="false" />
           <Property Name="idUs" Type="int" Nullable="false" />
-          <Property Name="url" Type="varchar" Nullable="false" MaxLength="250" />
           <Property Name="descriptions" Type="text" Nullable="false" />
           <Property Name="date_send" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="usuario_materias">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="idUs" Type="int" Nullable="false" />
+          <Property Name="idMa" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="webpages_Membership">
           <Key>
@@ -114,9 +154,33 @@
           <Property Name="UserId" Type="int" Nullable="false" />
           <Property Name="RoleId" Type="int" Nullable="false" />
         </EntityType>
+        <Association Name="FK__files__idHome__3E52440B">
+          <End Role="uploadHomework" Type="Model.Store.uploadHomework" Multiplicity="1" />
+          <End Role="files" Type="Model.Store.files" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="uploadHomework">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="files">
+              <PropertyRef Name="idHome" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__filesHome__idHom__4316F928">
+          <End Role="homework" Type="Model.Store.homework" Multiplicity="1" />
+          <End Role="filesHomework" Type="Model.Store.filesHomework" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="homework">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="filesHomework">
+              <PropertyRef Name="idHome" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__homework__date_e__21B6055D">
-          <End Role="matter" Type="HomeWorkModel.Store.matter" Multiplicity="1" />
-          <End Role="homework" Type="HomeWorkModel.Store.homework" Multiplicity="*" />
+          <End Role="matter" Type="Model.Store.matter" Multiplicity="1" />
+          <End Role="homework" Type="Model.Store.homework" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="matter">
               <PropertyRef Name="id" />
@@ -127,8 +191,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__rateHomeWo__idUp__31EC6D26">
-          <End Role="uploadHomework" Type="HomeWorkModel.Store.uploadHomework" Multiplicity="1" />
-          <End Role="rateHomeWork" Type="HomeWorkModel.Store.rateHomeWork" Multiplicity="*" />
+          <End Role="uploadHomework" Type="Model.Store.uploadHomework" Multiplicity="1" />
+          <End Role="rateHomeWork" Type="Model.Store.rateHomeWork" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="uploadHomework">
               <PropertyRef Name="id" />
@@ -139,8 +203,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__uploadHome__idHo__2C3393D0">
-          <End Role="homework" Type="HomeWorkModel.Store.homework" Multiplicity="1" />
-          <End Role="uploadHomework" Type="HomeWorkModel.Store.uploadHomework" Multiplicity="*" />
+          <End Role="homework" Type="Model.Store.homework" Multiplicity="1" />
+          <End Role="uploadHomework" Type="Model.Store.uploadHomework" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="homework">
               <PropertyRef Name="id" />
@@ -150,9 +214,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__usuario_ma__idMa__48CFD27E">
+          <End Role="matter" Type="Model.Store.matter" Multiplicity="1" />
+          <End Role="usuario_materias" Type="Model.Store.usuario_materias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="matter">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="usuario_materias">
+              <PropertyRef Name="idMa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_RoleId">
-          <End Role="webpages_Roles" Type="HomeWorkModel.Store.webpages_Roles" Multiplicity="1" />
-          <End Role="webpages_UsersInRoles" Type="HomeWorkModel.Store.webpages_UsersInRoles" Multiplicity="*" />
+          <End Role="webpages_Roles" Type="Model.Store.webpages_Roles" Multiplicity="1" />
+          <End Role="webpages_UsersInRoles" Type="Model.Store.webpages_UsersInRoles" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="webpages_Roles">
               <PropertyRef Name="RoleId" />
@@ -166,33 +242,68 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="HomeWorkModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityContainer Name="HomeEntities" p1:LazyLoadingEnabled="true">
-          <EntitySet Name="homework" EntityType="HomeWorkModel.homework" />
-          <EntitySet Name="matter" EntityType="HomeWorkModel.matter" />
-          <EntitySet Name="rateHomeWork" EntityType="HomeWorkModel.rateHomeWork" />
-          <EntitySet Name="uploadHomework" EntityType="HomeWorkModel.uploadHomework" />
-          <EntitySet Name="webpages_Membership" EntityType="HomeWorkModel.webpages_Membership" />
-          <EntitySet Name="webpages_OAuthMembership" EntityType="HomeWorkModel.webpages_OAuthMembership" />
-          <EntitySet Name="webpages_Roles" EntityType="HomeWorkModel.webpages_Roles" />
-          <EntitySet Name="webpages_UsersInRoles" EntityType="HomeWorkModel.webpages_UsersInRoles" />
-          <AssociationSet Name="FK__homework__date_e__21B6055D" Association="HomeWorkModel.FK__homework__date_e__21B6055D">
+      <Schema Namespace="Model" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Entities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="files" EntityType="Model.files" />
+          <EntitySet Name="filesHomework" EntityType="Model.filesHomework" />
+          <EntitySet Name="homework" EntityType="Model.homework" />
+          <EntitySet Name="matter" EntityType="Model.matter" />
+          <EntitySet Name="rateHomeWork" EntityType="Model.rateHomeWork" />
+          <EntitySet Name="uploadHomework" EntityType="Model.uploadHomework" />
+          <EntitySet Name="usuario_materias" EntityType="Model.usuario_materias" />
+          <EntitySet Name="webpages_Membership" EntityType="Model.webpages_Membership" />
+          <EntitySet Name="webpages_OAuthMembership" EntityType="Model.webpages_OAuthMembership" />
+          <EntitySet Name="webpages_Roles" EntityType="Model.webpages_Roles" />
+          <EntitySet Name="webpages_UsersInRoles" EntityType="Model.webpages_UsersInRoles" />
+          <AssociationSet Name="FK__files__idHome__3E52440B" Association="Model.FK__files__idHome__3E52440B">
+            <End Role="uploadHomework" EntitySet="uploadHomework" />
+            <End Role="files" EntitySet="files" />
+          </AssociationSet>
+          <AssociationSet Name="FK__filesHome__idHom__4316F928" Association="Model.FK__filesHome__idHom__4316F928">
+            <End Role="homework" EntitySet="homework" />
+            <End Role="filesHomework" EntitySet="filesHomework" />
+          </AssociationSet>
+          <AssociationSet Name="FK__homework__date_e__21B6055D" Association="Model.FK__homework__date_e__21B6055D">
             <End Role="matter" EntitySet="matter" />
             <End Role="homework" EntitySet="homework" />
           </AssociationSet>
-          <AssociationSet Name="FK__uploadHome__idHo__2C3393D0" Association="HomeWorkModel.FK__uploadHome__idHo__2C3393D0">
+          <AssociationSet Name="FK__uploadHome__idHo__2C3393D0" Association="Model.FK__uploadHome__idHo__2C3393D0">
             <End Role="homework" EntitySet="homework" />
             <End Role="uploadHomework" EntitySet="uploadHomework" />
           </AssociationSet>
-          <AssociationSet Name="FK__rateHomeWo__idUp__31EC6D26" Association="HomeWorkModel.FK__rateHomeWo__idUp__31EC6D26">
+          <AssociationSet Name="FK__usuario_ma__idMa__48CFD27E" Association="Model.FK__usuario_ma__idMa__48CFD27E">
+            <End Role="matter" EntitySet="matter" />
+            <End Role="usuario_materias" EntitySet="usuario_materias" />
+          </AssociationSet>
+          <AssociationSet Name="FK__rateHomeWo__idUp__31EC6D26" Association="Model.FK__rateHomeWo__idUp__31EC6D26">
             <End Role="uploadHomework" EntitySet="uploadHomework" />
             <End Role="rateHomeWork" EntitySet="rateHomeWork" />
           </AssociationSet>
-          <AssociationSet Name="fk_RoleId" Association="HomeWorkModel.fk_RoleId">
+          <AssociationSet Name="fk_RoleId" Association="Model.fk_RoleId">
             <End Role="webpages_Roles" EntitySet="webpages_Roles" />
             <End Role="webpages_UsersInRoles" EntitySet="webpages_UsersInRoles" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="files">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="url" Type="String" Nullable="false" MaxLength="250" Unicode="false" FixedLength="false" />
+          <Property Name="descripcion" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="idHome" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="uploadHomework" Relationship="Model.FK__files__idHome__3E52440B" FromRole="files" ToRole="uploadHomework" />
+        </EntityType>
+        <EntityType Name="filesHomework">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="url" Type="String" Nullable="false" MaxLength="250" Unicode="false" FixedLength="false" />
+          <Property Name="descripcion" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+          <Property Name="idHome" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="homework" Relationship="Model.FK__filesHome__idHom__4316F928" FromRole="filesHomework" ToRole="homework" />
+        </EntityType>
         <EntityType Name="homework">
           <Key>
             <PropertyRef Name="id" />
@@ -205,8 +316,9 @@
           <Property Name="title" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
           <Property Name="date_emision" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="date_end" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="matter" Relationship="HomeWorkModel.FK__homework__date_e__21B6055D" FromRole="homework" ToRole="matter" />
-          <NavigationProperty Name="uploadHomework" Relationship="HomeWorkModel.FK__uploadHome__idHo__2C3393D0" FromRole="homework" ToRole="uploadHomework" />
+          <NavigationProperty Name="filesHomework" Relationship="Model.FK__filesHome__idHom__4316F928" FromRole="homework" ToRole="filesHomework" />
+          <NavigationProperty Name="matter" Relationship="Model.FK__homework__date_e__21B6055D" FromRole="homework" ToRole="matter" />
+          <NavigationProperty Name="uploadHomework" Relationship="Model.FK__uploadHome__idHo__2C3393D0" FromRole="homework" ToRole="uploadHomework" />
         </EntityType>
         <EntityType Name="matter">
           <Key>
@@ -216,7 +328,8 @@
           <Property Name="code" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
           <Property Name="name" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
           <Property Name="date_register" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="homework" Relationship="HomeWorkModel.FK__homework__date_e__21B6055D" FromRole="matter" ToRole="homework" />
+          <NavigationProperty Name="homework" Relationship="Model.FK__homework__date_e__21B6055D" FromRole="matter" ToRole="homework" />
+          <NavigationProperty Name="usuario_materias" Relationship="Model.FK__usuario_ma__idMa__48CFD27E" FromRole="matter" ToRole="usuario_materias" />
         </EntityType>
         <EntityType Name="rateHomeWork">
           <Key>
@@ -227,7 +340,7 @@
           <Property Name="observation" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
           <Property Name="idUs" Type="Int32" Nullable="false" />
           <Property Name="idUp" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="uploadHomework" Relationship="HomeWorkModel.FK__rateHomeWo__idUp__31EC6D26" FromRole="rateHomeWork" ToRole="uploadHomework" />
+          <NavigationProperty Name="uploadHomework" Relationship="Model.FK__rateHomeWo__idUp__31EC6D26" FromRole="rateHomeWork" ToRole="uploadHomework" />
         </EntityType>
         <EntityType Name="uploadHomework">
           <Key>
@@ -236,11 +349,20 @@
           <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="idHo" Type="Int32" Nullable="false" />
           <Property Name="idUs" Type="Int32" Nullable="false" />
-          <Property Name="url" Type="String" Nullable="false" MaxLength="250" Unicode="false" FixedLength="false" />
           <Property Name="descriptions" Type="String" Nullable="false" MaxLength="Max" Unicode="false" FixedLength="false" />
           <Property Name="date_send" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="homework" Relationship="HomeWorkModel.FK__uploadHome__idHo__2C3393D0" FromRole="uploadHomework" ToRole="homework" />
-          <NavigationProperty Name="rateHomeWork" Relationship="HomeWorkModel.FK__rateHomeWo__idUp__31EC6D26" FromRole="uploadHomework" ToRole="rateHomeWork" />
+          <NavigationProperty Name="files" Relationship="Model.FK__files__idHome__3E52440B" FromRole="uploadHomework" ToRole="files" />
+          <NavigationProperty Name="homework" Relationship="Model.FK__uploadHome__idHo__2C3393D0" FromRole="uploadHomework" ToRole="homework" />
+          <NavigationProperty Name="rateHomeWork" Relationship="Model.FK__rateHomeWo__idUp__31EC6D26" FromRole="uploadHomework" ToRole="rateHomeWork" />
+        </EntityType>
+        <EntityType Name="usuario_materias">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="idUs" Type="Int32" Nullable="false" />
+          <Property Name="idMa" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="matter" Relationship="Model.FK__usuario_ma__idMa__48CFD27E" FromRole="usuario_materias" ToRole="matter" />
         </EntityType>
         <EntityType Name="webpages_Membership">
           <Key>
@@ -273,7 +395,7 @@
           </Key>
           <Property Name="RoleId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="RoleName" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="webpages_UsersInRoles" Relationship="HomeWorkModel.fk_RoleId" FromRole="webpages_Roles" ToRole="webpages_UsersInRoles" />
+          <NavigationProperty Name="webpages_UsersInRoles" Relationship="Model.fk_RoleId" FromRole="webpages_Roles" ToRole="webpages_UsersInRoles" />
         </EntityType>
         <EntityType Name="webpages_UsersInRoles">
           <Key>
@@ -282,11 +404,35 @@
           </Key>
           <Property Name="UserId" Type="Int32" Nullable="false" />
           <Property Name="RoleId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="webpages_Roles" Relationship="HomeWorkModel.fk_RoleId" FromRole="webpages_UsersInRoles" ToRole="webpages_Roles" />
+          <NavigationProperty Name="webpages_Roles" Relationship="Model.fk_RoleId" FromRole="webpages_UsersInRoles" ToRole="webpages_Roles" />
         </EntityType>
+        <Association Name="FK__files__idHome__3E52440B">
+          <End Role="uploadHomework" Type="Model.uploadHomework" Multiplicity="1" />
+          <End Role="files" Type="Model.files" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="uploadHomework">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="files">
+              <PropertyRef Name="idHome" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__filesHome__idHom__4316F928">
+          <End Role="homework" Type="Model.homework" Multiplicity="1" />
+          <End Role="filesHomework" Type="Model.filesHomework" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="homework">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="filesHomework">
+              <PropertyRef Name="idHome" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__homework__date_e__21B6055D">
-          <End Role="matter" Type="HomeWorkModel.matter" Multiplicity="1" />
-          <End Role="homework" Type="HomeWorkModel.homework" Multiplicity="*" />
+          <End Role="matter" Type="Model.matter" Multiplicity="1" />
+          <End Role="homework" Type="Model.homework" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="matter">
               <PropertyRef Name="id" />
@@ -297,8 +443,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__uploadHome__idHo__2C3393D0">
-          <End Role="homework" Type="HomeWorkModel.homework" Multiplicity="1" />
-          <End Role="uploadHomework" Type="HomeWorkModel.uploadHomework" Multiplicity="*" />
+          <End Role="homework" Type="Model.homework" Multiplicity="1" />
+          <End Role="uploadHomework" Type="Model.uploadHomework" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="homework">
               <PropertyRef Name="id" />
@@ -308,9 +454,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__usuario_ma__idMa__48CFD27E">
+          <End Role="matter" Type="Model.matter" Multiplicity="1" />
+          <End Role="usuario_materias" Type="Model.usuario_materias" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="matter">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="usuario_materias">
+              <PropertyRef Name="idMa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__rateHomeWo__idUp__31EC6D26">
-          <End Role="uploadHomework" Type="HomeWorkModel.uploadHomework" Multiplicity="1" />
-          <End Role="rateHomeWork" Type="HomeWorkModel.rateHomeWork" Multiplicity="*" />
+          <End Role="uploadHomework" Type="Model.uploadHomework" Multiplicity="1" />
+          <End Role="rateHomeWork" Type="Model.rateHomeWork" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="uploadHomework">
               <PropertyRef Name="id" />
@@ -321,8 +479,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="fk_RoleId">
-          <End Role="webpages_Roles" Type="HomeWorkModel.webpages_Roles" Multiplicity="1" />
-          <End Role="webpages_UsersInRoles" Type="HomeWorkModel.webpages_UsersInRoles" Multiplicity="*" />
+          <End Role="webpages_Roles" Type="Model.webpages_Roles" Multiplicity="1" />
+          <End Role="webpages_UsersInRoles" Type="Model.webpages_UsersInRoles" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="webpages_Roles">
               <PropertyRef Name="RoleId" />
@@ -337,9 +495,29 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="HomeWorkModelStoreContainer" CdmEntityContainer="HomeEntities">
+        <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="files">
+            <EntityTypeMapping TypeName="Model.files">
+              <MappingFragment StoreEntitySet="files">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="idHome" ColumnName="idHome" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="filesHomework">
+            <EntityTypeMapping TypeName="Model.filesHomework">
+              <MappingFragment StoreEntitySet="filesHomework">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="url" ColumnName="url" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="idHome" ColumnName="idHome" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="homework">
-            <EntityTypeMapping TypeName="HomeWorkModel.homework">
+            <EntityTypeMapping TypeName="Model.homework">
               <MappingFragment StoreEntitySet="homework">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="idMa" ColumnName="idMa" />
@@ -353,7 +531,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="matter">
-            <EntityTypeMapping TypeName="HomeWorkModel.matter">
+            <EntityTypeMapping TypeName="Model.matter">
               <MappingFragment StoreEntitySet="matter">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="code" ColumnName="code" />
@@ -363,7 +541,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="rateHomeWork">
-            <EntityTypeMapping TypeName="HomeWorkModel.rateHomeWork">
+            <EntityTypeMapping TypeName="Model.rateHomeWork">
               <MappingFragment StoreEntitySet="rateHomeWork">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="rate" ColumnName="rate" />
@@ -374,19 +552,27 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="uploadHomework">
-            <EntityTypeMapping TypeName="HomeWorkModel.uploadHomework">
+            <EntityTypeMapping TypeName="Model.uploadHomework">
               <MappingFragment StoreEntitySet="uploadHomework">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="idHo" ColumnName="idHo" />
                 <ScalarProperty Name="idUs" ColumnName="idUs" />
-                <ScalarProperty Name="url" ColumnName="url" />
                 <ScalarProperty Name="descriptions" ColumnName="descriptions" />
                 <ScalarProperty Name="date_send" ColumnName="date_send" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="usuario_materias">
+            <EntityTypeMapping TypeName="Model.usuario_materias">
+              <MappingFragment StoreEntitySet="usuario_materias">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idUs" ColumnName="idUs" />
+                <ScalarProperty Name="idMa" ColumnName="idMa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="webpages_Membership">
-            <EntityTypeMapping TypeName="HomeWorkModel.webpages_Membership">
+            <EntityTypeMapping TypeName="Model.webpages_Membership">
               <MappingFragment StoreEntitySet="webpages_Membership">
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
@@ -403,7 +589,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="webpages_OAuthMembership">
-            <EntityTypeMapping TypeName="HomeWorkModel.webpages_OAuthMembership">
+            <EntityTypeMapping TypeName="Model.webpages_OAuthMembership">
               <MappingFragment StoreEntitySet="webpages_OAuthMembership">
                 <ScalarProperty Name="Provider" ColumnName="Provider" />
                 <ScalarProperty Name="ProviderUserId" ColumnName="ProviderUserId" />
@@ -412,7 +598,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="webpages_Roles">
-            <EntityTypeMapping TypeName="HomeWorkModel.webpages_Roles">
+            <EntityTypeMapping TypeName="Model.webpages_Roles">
               <MappingFragment StoreEntitySet="webpages_Roles">
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
                 <ScalarProperty Name="RoleName" ColumnName="RoleName" />
@@ -420,7 +606,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="webpages_UsersInRoles">
-            <EntityTypeMapping TypeName="HomeWorkModel.webpages_UsersInRoles">
+            <EntityTypeMapping TypeName="Model.webpages_UsersInRoles">
               <MappingFragment StoreEntitySet="webpages_UsersInRoles">
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />

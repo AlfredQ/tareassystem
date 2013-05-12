@@ -10,6 +10,7 @@ namespace tareas.Controllers
     {
         public ActionResult Index()
         {
+            Session["id"] = 1;
             ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
 
             return View();
@@ -26,6 +27,20 @@ namespace tareas.Controllers
         {
             ViewBag.Message = "Your contact page.";
 
+            return View();
+        }
+        public ActionResult Upload() 
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult subir()
+        {
+            HttpFileCollectionBase files = Request.Files;
+            if (files.Count > 0) 
+            {
+                
+            }
             return View();
         }
     }

@@ -1,8 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="HomeWorkModelStoreContainer" CdmEntityContainer="HomeEntities">
+  <EntityContainerMapping StorageEntityContainer="ModelStoreContainer" CdmEntityContainer="Entities">
+    <EntitySetMapping Name="files">
+      <EntityTypeMapping TypeName="Model.files">
+        <MappingFragment StoreEntitySet="files">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="url" ColumnName="url" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="idHome" ColumnName="idHome" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="filesHomework">
+      <EntityTypeMapping TypeName="Model.filesHomework">
+        <MappingFragment StoreEntitySet="filesHomework">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="url" ColumnName="url" />
+          <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+          <ScalarProperty Name="idHome" ColumnName="idHome" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="homework">
-      <EntityTypeMapping TypeName="HomeWorkModel.homework">
+      <EntityTypeMapping TypeName="Model.homework">
         <MappingFragment StoreEntitySet="homework">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="idMa" ColumnName="idMa" />
@@ -16,7 +36,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="matter">
-      <EntityTypeMapping TypeName="HomeWorkModel.matter">
+      <EntityTypeMapping TypeName="Model.matter">
         <MappingFragment StoreEntitySet="matter">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="code" ColumnName="code" />
@@ -26,7 +46,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="rateHomeWork">
-      <EntityTypeMapping TypeName="HomeWorkModel.rateHomeWork">
+      <EntityTypeMapping TypeName="Model.rateHomeWork">
         <MappingFragment StoreEntitySet="rateHomeWork">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="rate" ColumnName="rate" />
@@ -37,19 +57,27 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="uploadHomework">
-      <EntityTypeMapping TypeName="HomeWorkModel.uploadHomework">
+      <EntityTypeMapping TypeName="Model.uploadHomework">
         <MappingFragment StoreEntitySet="uploadHomework">
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="idHo" ColumnName="idHo" />
           <ScalarProperty Name="idUs" ColumnName="idUs" />
-          <ScalarProperty Name="url" ColumnName="url" />
           <ScalarProperty Name="descriptions" ColumnName="descriptions" />
           <ScalarProperty Name="date_send" ColumnName="date_send" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="usuario_materias">
+      <EntityTypeMapping TypeName="Model.usuario_materias">
+        <MappingFragment StoreEntitySet="usuario_materias">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idUs" ColumnName="idUs" />
+          <ScalarProperty Name="idMa" ColumnName="idMa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="webpages_Membership">
-      <EntityTypeMapping TypeName="HomeWorkModel.webpages_Membership">
+      <EntityTypeMapping TypeName="Model.webpages_Membership">
         <MappingFragment StoreEntitySet="webpages_Membership">
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
@@ -66,7 +94,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="webpages_OAuthMembership">
-      <EntityTypeMapping TypeName="HomeWorkModel.webpages_OAuthMembership">
+      <EntityTypeMapping TypeName="Model.webpages_OAuthMembership">
         <MappingFragment StoreEntitySet="webpages_OAuthMembership">
           <ScalarProperty Name="Provider" ColumnName="Provider" />
           <ScalarProperty Name="ProviderUserId" ColumnName="ProviderUserId" />
@@ -75,7 +103,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="webpages_Roles">
-      <EntityTypeMapping TypeName="HomeWorkModel.webpages_Roles">
+      <EntityTypeMapping TypeName="Model.webpages_Roles">
         <MappingFragment StoreEntitySet="webpages_Roles">
           <ScalarProperty Name="RoleId" ColumnName="RoleId" />
           <ScalarProperty Name="RoleName" ColumnName="RoleName" />
@@ -83,7 +111,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="webpages_UsersInRoles">
-      <EntityTypeMapping TypeName="HomeWorkModel.webpages_UsersInRoles">
+      <EntityTypeMapping TypeName="Model.webpages_UsersInRoles">
         <MappingFragment StoreEntitySet="webpages_UsersInRoles">
           <ScalarProperty Name="UserId" ColumnName="UserId" />
           <ScalarProperty Name="RoleId" ColumnName="RoleId" />

@@ -17,6 +17,7 @@ namespace tareas.Models
         public matter()
         {
             this.homework = new HashSet<homework>();
+            this.usuario_materias = new HashSet<usuario_materias>();
         }
     
         public int id { get; set; }
@@ -25,5 +26,6 @@ namespace tareas.Models
         public System.DateTime date_register { get; set; }
     
         public virtual ICollection<homework> homework { get; set; }
+        public virtual ICollection<usuario_materias> usuario_materias { get; set; }
     }
 }

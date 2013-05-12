@@ -8,6 +8,7 @@ namespace tareas.Models.ModelViews
     public class TareasView:matter
     {
         public IEnumerable<HomeWorkView> tareas { set; get;}
+        public bool add { set; get; }
         
     }
 }

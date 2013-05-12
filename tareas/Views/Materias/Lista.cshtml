@@ -1,5 +1,25 @@
 ﻿@model IEnumerable<tareas.Models.ModelViews.TareasView>
 
+<script>
+    $(document).ready(function () {
+        $("#VentanaModal").dialog({
+            autoOpen: false,
+            width: 700,
+            height: 600,
+            modal:true
+        });
+        $("a#agregarMateria").each(function () {
+            $(this).click(function (e) {
+
+                e.preventDefault();
+                $("#containerForm").load("/Materias/AgregarTarea/" + $(this).attr("idMateria"));
+                $("#VentanaModal").dialog("open");
+
+            });
+        })
+        
+    });
+</script>
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -29,6 +49,12 @@
             @Html.DisplayFor(modelItem => item.date_register)
         </td>
         <td>
+            @if (item.add == true) 
+            {
+                <a href="/" id="agregarMateria" idMateria="@item.id">Agregar Tarea</a>
+            }
+        </td>
+        <td>
             <ul>
                 <li>
                     @foreach(var work in item.tareas)
@@ -38,10 +64,7 @@
                         <div>@work.date_end</div>
                         <div id="menu">
                             <ul>
-                                @if (@work.add == true) 
-                                {
-                                    <li><a href="">Agregar Tarea</a> </li>   
-                                }
+                               
                                 @if (@work.edit == true) 
                                 {
                                     <li><a href="">Editar</a> </li>   
@@ -60,3 +83,8 @@
 }
 
 </table>
+<div id="VentanaModal" title="Agregar Tareas">
+    <div id="containerForm">
+
+    </div>
+</div>

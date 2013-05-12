@@ -16,16 +16,17 @@ namespace tareas.Models
     {
         public uploadHomework()
         {
+            this.files = new HashSet<files>();
             this.rateHomeWork = new HashSet<rateHomeWork>();
         }
     
         public int id { get; set; }
         public int idHo { get; set; }
         public int idUs { get; set; }
-        public string url { get; set; }
         public string descriptions { get; set; }
         public System.DateTime date_send { get; set; }
     
+        public virtual ICollection<files> files { get; set; }
         public virtual homework homework { get; set; }
         public virtual ICollection<rateHomeWork> rateHomeWork { get; set; }
     }

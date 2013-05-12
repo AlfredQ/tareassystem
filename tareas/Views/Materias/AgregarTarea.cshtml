@@ -1,0 +1,106 @@
+﻿@model tareas.Models.homework
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>AgregarTarea</title>
+</head>
+<body>
+    
+    <script>
+        $(document).ready(function () {
+            $("#date_emision").datepicker(
+                {
+                    dateFormat:"yy-mm-dd"
+                });
+
+
+            $("#date_end").datepicker({
+                dateFormat: "yy-mm-dd"
+            });
+            var information = "";
+            var myDropzone = new Dropzone("div#myId", {
+                url: "/Materias/SaveFiles",
+                paramName: "file",
+                maxFilesize: 4, // MB
+                accept: function (file, done) {
+                    done();
+                },
+                complete: function (data, r) {
+                    information += r;
+                    $("#urldownload").val(information);
+                }
+            });
+        });
+    </script>
+    @using (Html.BeginForm()) {
+        @Html.ValidationSummary(true)
+    
+        <fieldset>
+            <legend>homework</legend>
+    
+            
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.descriptions)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.descriptions)
+                @Html.ValidationMessageFor(model => model.descriptions)
+            </div>
+
+            <div class="well">
+                <div id="myId" class="dropzone">
+
+</div>
+
+                <div class="progress">
+                    <div class="bar" id="overallbar" style="width: 0%">
+                    </div>
+                </div>
+            </div>
+
+            <div class="editor-label">
+                @Html.LabelFor(model => model.title)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.title)
+                @Html.ValidationMessageFor(model => model.title)
+            </div>
+    
+            <div class="editor-label">
+                @Html.LabelFor(model => model.date_emision)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.date_emision)
+                @Html.ValidationMessageFor(model => model.date_emision)
+            </div>
+            <div>
+                @Html.HiddenFor(model => model.urldownload);
+                <input type="hidden" id="idMa"  name="idMa" value="@ViewBag.idma" />
+            </div>
+            <div class="editor-label">
+                @Html.LabelFor(model => model.date_end)
+            </div>
+            <div class="editor-field">
+                @Html.EditorFor(model => model.date_end)
+                @Html.ValidationMessageFor(model => model.date_end)
+            </div>
+    
+            <p>
+                <input type="submit" value="Create" />
+            </p>
+        </fieldset>
+    }
+    
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+</body>
+</html>

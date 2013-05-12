@@ -13,10 +13,10 @@ namespace tareas.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class HomeEntities : DbContext
+    public partial class Entities : DbContext
     {
-        public HomeEntities()
-            : base("name=HomeEntities")
+        public Entities()
+            : base("name=Entities")
         {
         }
     
@@ -25,10 +25,13 @@ namespace tareas.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public DbSet<files> files { get; set; }
+        public DbSet<filesHomework> filesHomework { get; set; }
         public DbSet<homework> homework { get; set; }
         public DbSet<matter> matter { get; set; }
         public DbSet<rateHomeWork> rateHomeWork { get; set; }
         public DbSet<uploadHomework> uploadHomework { get; set; }
+        public DbSet<usuario_materias> usuario_materias { get; set; }
         public DbSet<webpages_Membership> webpages_Membership { get; set; }
         public DbSet<webpages_OAuthMembership> webpages_OAuthMembership { get; set; }
         public DbSet<webpages_Roles> webpages_Roles { get; set; }

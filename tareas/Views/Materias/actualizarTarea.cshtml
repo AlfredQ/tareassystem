@@ -80,15 +80,15 @@
     
         <fieldset>
             <legend>homework</legend>
-
-
             <div class="editor-label">
-                Descripcón
+                Titulo
             </div>
             <div class="editor-field">
-                @Html.EditorFor(model => model.descriptions)
-                @Html.ValidationMessageFor(model => model.descriptions)
+                @Html.EditorFor(model => model.title)
+                @Html.ValidationMessageFor(model => model.title)
             </div>
+
+            
             <div id="actualizar_archivos">
                 <ul>
                     <li><a href="#tabs-1">Archivos</a></li>
@@ -114,11 +114,11 @@
             
 
             <div class="editor-label">
-                @Html.LabelFor(model => model.title)
+                Descripcón
             </div>
             <div class="editor-field">
-                @Html.EditorFor(model => model.title)
-                @Html.ValidationMessageFor(model => model.title)
+                @Html.EditorFor(model => model.descriptions)
+                @Html.ValidationMessageFor(model => model.descriptions)
             </div>
     
             <div class="editor-label">

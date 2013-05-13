@@ -55,5 +55,13 @@ namespace tareas.Controllers
             }
             return ruta+"<br/> "+fullpaths+"</ul>";
         }
+        public string prueba2() 
+        {
+            return Server.MapPath("~/uploadhomeworks");
+        }
+        public string prueba() 
+        {
+            return "que pasa";
+        }
     }
 }

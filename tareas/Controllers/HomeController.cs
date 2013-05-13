@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -42,6 +43,17 @@ namespace tareas.Controllers
                 
             }
             return View();
+        }
+        public string listar() 
+        {
+            string ruta = Server.MapPath("~/uploadhomeworks");
+            string fullpaths="<ul>";
+            DirectoryInfo p = new DirectoryInfo(ruta);
+            foreach(var file in p.GetFiles())
+            {
+                fullpaths+="<li><b>"+file.Name+"</b></li>";
+            }
+            return ruta+"<br/> "+fullpaths+"</ul>";
         }
     }
 }

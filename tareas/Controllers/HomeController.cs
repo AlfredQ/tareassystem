@@ -57,7 +57,9 @@ namespace tareas.Controllers
         }
         public string prueba2() 
         {
-            return Server.MapPath("~/uploadhomeworks");
+            string ruta=Server.MapPath("~/uploadhomeworks");
+            DirectoryInfo p = new DirectoryInfo(ruta);
+            return "entra";
         }
         public string prueba() 
         {

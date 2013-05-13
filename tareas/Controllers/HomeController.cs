@@ -47,13 +47,13 @@ namespace tareas.Controllers
         public string listar() 
         {
             string ruta = Server.MapPath("~/uploadhomeworks");
-            string fullpaths="<ul>";
+            string fullpaths="";
             DirectoryInfo p = new DirectoryInfo(ruta);
             foreach(var file in p.GetFiles())
             {
-                fullpaths+="<li><b>"+file.Name+"</b></li>";
+                fullpaths+=file.Name;
             }
-            return ruta+"<br/> "+fullpaths+"</ul>";
+            return fullpaths;
         }
         public string prueba2() 
         {
